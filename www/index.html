@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="style.css" rel="stylesheet">
+    <title>Beta Inventory Search Engine</title>
+    <link href="js/jquery-ui.min.css" rel="Stylesheet"></link>
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/jquery-ui.min.js"></script>
+    <style>
+        /* autocomplete adds the ui-autocomplete-loading class to the textbox when it is _busy_ */
+        #autocomplete.ui-autocomplete-loading {
+            background-position: right center;
+            background-repeat: no-repeat;
+        }
+    </style>
+</head>
+<body>
+    <div class="center">
+        <img src="images/logo.gif" />
+        <form class="formentry" action="http://localhost:5000/api" target="_blank">
+            <input style="width:100%; text-align:left;" id="autocomplete" type="text" placeholder="Enter your query here." name="input">
+        </form>
+        <script>
+            /*
+             * jQuery UI Autocomplete: Load Data via AJAX
+             * http://salman-w.blogspot.com/2013/12/jquery-ui-autocomplete-examples.html
+             */
+            $(function() {
+                $("#autocomplete").autocomplete({
+                    minLength: 2,
+                    source:function(request, response) {
+                        $.getJSON("http://localhost:5000/api",{
+                            input: request.term // in flask, "input" will be the argument to look for using request.args
+                        }, function(data) {
+                            response(data.json_list); // matching_results from jsonify
+                        });
+                    },
+                    select: function(event, ui) {
+                        console.log("ui.item.value"); // might help later
+                        event.preventDefault();
+                    },
+                    focus: function(event, ui) {
+                        // prevent autocomplete from updating the textbox
+                        event.preventDefault();
+                    } 
+                });
+            });
+        </script>
+    </div>
+</body>
+</html>
