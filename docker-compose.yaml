@@ -2,7 +2,10 @@ version: "2"
 services:
 # jQuery Front End
   autocomplete-app:
-    image: "mayankt/autocomplete-app"
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    image: "autocomplete-app"
     restart: always
     environment:
       - APIHOST=localhost:5000
