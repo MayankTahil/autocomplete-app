@@ -19,12 +19,12 @@ spec:
     spec:
       containers:
       - env:
-        - name: API_HOST
+        - name: APIHOST
           valueFrom:
             secretKeyRef:
               name: app-secrets
-              key: API_HOST
-        image: mayankt/autocomplete-app:latest
+              key: APIHOST
+        image: mayankt/autocomplete-app:master
         imagePullPolicy: Always
         name: autocomplete-app
         ports:

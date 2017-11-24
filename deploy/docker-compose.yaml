@@ -5,7 +5,7 @@ services:
     image: "mayankt/autocomplete-app"
     restart: always
     environment:
-      - API_HOST=localhost:5000
+      - APIHOST=localhost:5000
     ports:
       - "80:80"
     hostname: autocomplete-app
