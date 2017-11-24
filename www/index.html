@@ -17,7 +17,7 @@
 <body>
     <div class="center">
         <img src="images/logo.gif" />
-        <form class="formentry" action="http://localhost:5000/api" target="_blank">
+        <form class="formentry" action="http://API_HOST/api" target="_blank">
             <input style="width:100%; text-align:left;" id="autocomplete" type="text" placeholder="Enter your query here." name="input">
         </form>
         <script>
@@ -29,7 +29,7 @@
                 $("#autocomplete").autocomplete({
                     minLength: 2,
                     source:function(request, response) {
-                        $.getJSON("http://localhost:5000/api",{
+                        $.getJSON("http://API_HOST/api",{
                             input: request.term // in flask, "input" will be the argument to look for using request.args
                         }, function(data) {
                             response(data.json_list); // matching_results from jsonify

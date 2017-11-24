@@ -1,0 +1,11 @@
+version: "2"
+services:
+# jQuery Front End
+  autocomplete-app:
+    image: "mayankt/autocomplete-app"
+    restart: always
+    environment:
+      - API_HOST=localhost:5000
+    ports:
+      - "80:80"
+    hostname: autocomplete-app
