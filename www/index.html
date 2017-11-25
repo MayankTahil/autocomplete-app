@@ -38,7 +38,7 @@
                 $("#autocomplete").autocomplete({
                     minLength: 2,
                     source:function(request, response) {
-                        $.getJSON("http://localhost:5000/api",{
+                        $.getJSON("http://APIHOST/api",{
                             input: request.term // in flask, "input" will be the argument to look for using request.args
                         }, function(data) {
                             response(data.json_list); // matching_results from jsonify
